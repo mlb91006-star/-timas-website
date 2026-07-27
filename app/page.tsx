@@ -1,6 +1,11 @@
-import { Hero } from "@/components/sections/Hero";
-import { SpecsHighlight } from "@/components/sections/SpecsHighlight";
+import { HeroSequence } from "@/components/sections/HeroSequence";
 import { ExplodedVacuumSection } from "@/components/sections/ExplodedVacuumSection";
+import { StickyFeatureSection } from "@/components/sections/StickyFeatureSection";
+import { DetailCards } from "@/components/sections/DetailCards";
+import { RealUseSection } from "@/components/sections/RealUseSection";
+import { SpecsHighlight } from "@/components/sections/SpecsHighlight";
+import { PackageContents } from "@/components/sections/PackageContents";
+import { FinalCTA } from "@/components/sections/FinalCTA";
 import { ProductImageSlot } from "@/components/ui/ProductImageSlot";
 import { explodedParts } from "@/data/exploded-parts";
 
@@ -12,8 +17,8 @@ const disassembledParts = explodedParts.filter(
 export default function Home() {
   return (
     <>
-      <Hero />
-      <SpecsHighlight />
+      <HeroSequence />
+
       <ExplodedVacuumSection
         parts={disassembledParts.map((part) => ({
           id: part.id,
@@ -34,6 +39,13 @@ export default function Home() {
           />
         )}
       </ExplodedVacuumSection>
+
+      <StickyFeatureSection />
+      <DetailCards />
+      <RealUseSection />
+      <SpecsHighlight />
+      <PackageContents />
+      <FinalCTA />
     </>
   );
 }

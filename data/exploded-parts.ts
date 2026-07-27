@@ -1,9 +1,11 @@
 import type { ExplodedPart } from "@/types";
 
 /**
- * Reserved for the future exploded-view scroll animation.
- * Image files are not yet uploaded — see README.md for the full list.
- * Do not render these until the real assets exist.
+ * Real part list for the exploded-view scroll animation, detail cards, and
+ * package contents. Most image files aren't uploaded yet — see README.md
+ * for the full list — but every consumer renders these through
+ * ProductImageSlot, which shows a neutral placeholder for a missing file
+ * instead of breaking.
  */
 export const explodedParts: ExplodedPart[] = [
   { id: "vacuum-complete", label: "Пылесос в сборе", image: "/images/dh20/exploded/vacuum-complete.png" },

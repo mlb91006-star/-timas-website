@@ -10,8 +10,10 @@ export const siteConfig: SiteConfig = {
   locale: "ru_RU",
   nav: [
     { label: "DH20 Ultra", href: "/products/dh20-ultra" },
+    { label: "Преимущества", href: "/#preimushestva" },
     { label: "Характеристики", href: "/products/dh20-ultra#specifications" },
-    { label: "Поддержка", href: "/support" },
+    { label: "Комплектация", href: "/#komplekt" },
+    { label: "Гарантия", href: "/#garantiya" },
   ],
   buyHref: "/products/dh20-ultra#buy",
 };

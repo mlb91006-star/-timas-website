@@ -18,7 +18,7 @@ export function MobileNav({ open, onNavigate }: MobileNavProps) {
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
           transition={{ duration: 0.25, ease: "easeInOut" }}
-          className="overflow-hidden border-b border-graphite-700 bg-graphite-950 md:hidden"
+          className="overflow-hidden border-b border-graphite-700 bg-graphite-950 lg:hidden"
         >
           <nav className="flex flex-col gap-1 px-4 py-4">
             {siteConfig.nav.map((link) => (

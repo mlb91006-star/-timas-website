@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Manrope, Unbounded } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
@@ -31,6 +31,11 @@ export const metadata: Metadata = {
     locale: siteConfig.locale,
     type: "website",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#050505",
+  viewportFit: "cover",
 };
 
 export default function RootLayout({

@@ -1,23 +1,53 @@
-import { Battery, Gauge, Timer, Volume2, ShieldCheck, Zap } from "lucide-react";
+import {
+  Tag,
+  Zap,
+  Gauge,
+  Timer,
+  Container,
+  Filter,
+  Battery,
+  MonitorSmartphone,
+  Wind,
+} from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { siteConfig } from "@/config/site";
+import { specificationGroups } from "@/data/specifications";
+
+const byId = (id: string) =>
+  specificationGroups.flatMap((group) => group.items).find((item) => item.id === id);
+
+const suction = byId("suction");
+const modes = byId("modes");
+const dustbin = byId("dustbin");
+const hepa = byId("hepa");
+const battery = byId("battery");
+const led = byId("led");
+const brush = byId("brush");
 
 const highlights = [
+  { icon: Tag, label: "Модель", value: siteConfig.fullProductName },
   { icon: Zap, label: "Мощность", value: "400 Вт" },
-  { icon: Gauge, label: "Всасывание", value: "> 30 кПа" },
-  { icon: Battery, label: "Аккумулятор", value: "29,6 В · 2200 мА·ч" },
-  { icon: Timer, label: "Режимы работы", value: "10 / 20 / 35 / 60 мин" },
-  { icon: Volume2, label: "Уровень шума", value: "≤ 76 дБ" },
-  { icon: ShieldCheck, label: "Гарантия", value: "1 год" },
+  {
+    icon: Gauge,
+    label: "Мощность всасывания",
+    value: suction ? `${suction.value}${suction.note ? `, ${suction.note}` : ""}` : "",
+  },
+  { icon: Timer, label: "Время работы", value: modes?.value ?? "" },
+  { icon: Container, label: "Объём контейнера", value: dustbin?.value ?? "" },
+  { icon: Filter, label: "Фильтрация", value: hepa ? `HEPA-фильтр, ${hepa.value}` : "" },
+  { icon: Battery, label: "Аккумулятор", value: battery?.value ?? "" },
+  { icon: MonitorSmartphone, label: "Дисплей", value: led?.value ?? "" },
+  { icon: Wind, label: "Щётка", value: brush?.value ? `${brush.value} напольная щётка` : "" },
 ];
 
 export function SpecsHighlight() {
   return (
-    <section className="bg-graphite-950 py-20 sm:py-28">
+    <section id="specifications" className="scroll-mt-24 bg-graphite-950 py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h2 className="font-display text-2xl font-semibold text-bone-100 sm:text-3xl">
-              Честные характеристики
+              Характеристики
             </h2>
             <p className="mt-2 max-w-md text-bone-500">
               Только подтверждённые данные — без придуманных процентов и
