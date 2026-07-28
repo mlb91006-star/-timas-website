@@ -28,7 +28,7 @@ export const heroTextStages: ScrollTextStage[] = [
     start: 0.32,
     end: 0.5,
     title: "Мощность всасывания",
-    subtitle: "более 30 кПа при полностью заряженном аккумуляторе",
+    subtitle: "до 30 кПа при полностью заряженном аккумуляторе",
   },
   {
     start: 0.5,
@@ -40,7 +40,7 @@ export const heroTextStages: ScrollTextStage[] = [
     start: 0.68,
     end: 0.85,
     title: "Автономность",
-    subtitle: "Режимы работы: ≈10 / 20 / 35 / 60 минут",
+    subtitle: "До 60 минут работы: режимы ≈10 / 20 / 35 / 60 минут",
   },
   {
     start: 0.85,

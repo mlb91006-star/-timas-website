@@ -9,7 +9,7 @@ export const specificationGroups: SpecificationGroup[] = [
       {
         id: "suction",
         label: "Максимальная мощность всасывания",
-        value: "более 30 кПа",
+        value: "до 30 кПа",
         note: "при полностью заряженном аккумуляторе",
       },
       { id: "noise", label: "Уровень шума", value: "не более 76 дБ" },
