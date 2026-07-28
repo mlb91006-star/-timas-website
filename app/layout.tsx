@@ -25,11 +25,23 @@ export const metadata: Metadata = {
     template: `%s — ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: siteConfig.fullProductName,
     description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
     locale: siteConfig.locale,
     type: "website",
+    images: ["/images/dh20/vacuum-hero.webp"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.fullProductName,
+    description: siteConfig.description,
+    images: ["/images/dh20/vacuum-hero.webp"],
   },
 };
 

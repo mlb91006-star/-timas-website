@@ -1,6 +1,5 @@
-import fs from "node:fs";
-import path from "node:path";
 import Image from "next/image";
+import { isImageSafeToShow } from "@/lib/image-utils";
 
 interface ProductImageSlotProps {
   src: string;
@@ -10,23 +9,25 @@ interface ProductImageSlotProps {
 }
 
 /**
- * Renders the real product photo when it exists in /public, otherwise a
- * neutral placeholder — no invented product imagery. Existence is checked
- * on the server so a missing asset never breaks the build or the page.
+ * Renders the real product photo when it exists in /public and doesn't
+ * have a checkerboard "transparency indicator" baked into its pixels
+ * (see lib/image-utils.ts) — otherwise a neutral graphite silhouette.
+ * Existence/quality checks run on the server, so a missing or broken
+ * export never breaks the build or reaches the user.
  */
-export function ProductImageSlot({
+export async function ProductImageSlot({
   src,
   alt,
   priority,
   className,
 }: ProductImageSlotProps) {
-  const exists = fs.existsSync(path.join(process.cwd(), "public", src));
+  const safe = await isImageSafeToShow(src);
 
   return (
     <div
       className={`relative overflow-hidden rounded-[2rem] border border-white/5 bg-graphite-900 ${className ?? ""}`}
     >
-      {exists ? (
+      {safe ? (
         <Image
           src={src}
           alt={alt}

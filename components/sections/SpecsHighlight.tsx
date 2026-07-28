@@ -43,7 +43,7 @@ const highlights = [
 export function SpecsHighlight() {
   return (
     <section id="specifications" className="scroll-mt-24 bg-graphite-950 py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8 lg:px-12">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h2 className="font-display text-2xl font-semibold text-bone-100 sm:text-3xl">

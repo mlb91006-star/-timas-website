@@ -33,17 +33,70 @@ export interface ExplodedPart {
   image: string;
 }
 
-export interface SequenceManifest {
-  /** Public-relative paths (e.g. "/sequences/timas-main/desktop/frame-0001.webp"), sorted by frame number. */
-  frames: string[];
-  frameCount: number;
-  extension: string | null;
+/** A pure-transform position for one exploded part at one breakpoint tier. */
+export interface PartTransform {
+  /** Horizontal offset in px from the assembled position. */
+  x: number;
+  /** Vertical offset in px from the assembled position (positive = down). */
+  y: number;
+  /** Uniform scale relative to the assembled photo's own scale. */
+  scale: number;
+  /** Rotation in degrees. Kept minimal per the animation direction rules. */
+  rotate: number;
 }
 
-export interface ScrollTextStage {
-  /** Scroll progress range within the sequence, 0–1. */
+/**
+ * Full config for one part of the exploded-view scroll animation. All
+ * coordinates, timing, and copy live here — never inline in JSX — so the
+ * scene component only maps data to a GSAP timeline.
+ */
+export interface ExplodedPartConfig {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  alt: string;
+  /** Scroll progress range (0–1) within the exploded section during which this part animates. */
   start: number;
   end: number;
+  desktopTransform: PartTransform;
+  tabletTransform: PartTransform;
+  mobileTransform: PartTransform;
+  zIndex: number;
+  /** Set false to skip this part everywhere (animation, mobile cards) without deleting its data. */
+  enabled: boolean;
+}
+
+export interface CommerceConfig {
+  ozonUrl: string;
+  wildberriesUrl: string;
+  telegramUrl: string;
+  whatsappUrl: string;
+  phone: string;
+  email: string;
+  /** Price in the smallest sensible display unit (whole rubles). Omit until confirmed. */
+  price: number | null;
+  currency: string;
+  availability: "preorder" | "in_stock" | "out_of_stock" | null;
+}
+
+export interface FeatureStoryContent {
+  id: string;
   title: string;
-  subtitle?: string;
+  text: string;
+  warning?: string;
+  image: string;
+  alt: string;
+}
+
+export interface FaqItem {
+  id: string;
+  question: string;
+  answer: string;
+}
+
+/** Framing copy for the exploded scene's idle (0–10%) and final (86–100%) stages. */
+export interface ExplodedNarrativeStage {
+  title: string;
+  subtitle: string;
 }

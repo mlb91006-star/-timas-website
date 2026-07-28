@@ -5,6 +5,7 @@ export const specificationGroups: SpecificationGroup[] = [
     id: "power",
     title: "Мощность и всасывание",
     items: [
+      { id: "motor-type", label: "Тип двигателя", value: "BLDC (бесщёточный)" },
       { id: "power", label: "Мощность", value: "400 Вт" },
       {
         id: "suction",
@@ -25,7 +26,12 @@ export const specificationGroups: SpecificationGroup[] = [
         label: "Режимы работы",
         value: "≈10 / 20 / 35 / 60 минут",
       },
-      { id: "charge-time", label: "Время зарядки", value: "около 5 часов" },
+      {
+        id: "charge-time",
+        label: "Время зарядки",
+        value: "около 5 часов",
+        note: "возможное отклонение ±30 минут",
+      },
     ],
   },
   {
@@ -37,6 +43,23 @@ export const specificationGroups: SpecificationGroup[] = [
       { id: "led", label: "Индикация", value: "LED-индикатор" },
       { id: "tube", label: "Труба", value: "складная" },
       { id: "brush", label: "Напольная щётка", value: "моторизированная" },
+    ],
+  },
+  {
+    id: "charger",
+    title: "Зарядное устройство",
+    items: [
+      {
+        id: "charger-output",
+        label: "Выход адаптера",
+        value: "DC 36 В, 500 мА",
+      },
+      {
+        id: "cable-length",
+        label: "Длина видимого кабеля адаптера",
+        value: "около 150 см",
+        note: "возможное отклонение ±10%",
+      },
     ],
   },
   {

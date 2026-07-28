@@ -5,36 +5,38 @@ import { specificationGroups } from "@/data/specifications";
 
 interface FeatureCard {
   id: string;
-  headline: string;
-  caption: string;
+  title: string;
+  text: string;
 }
 
 function buildFeatureCards(): FeatureCard[] {
   const all = specificationGroups.flatMap((group) => group.items);
-  const byId = (id: string) => all.find((item) => item.id === id);
+  const suction = all.find((item) => item.id === "suction");
 
-  const power = byId("power");
-  const suction = byId("suction");
-  const modes = byId("modes");
-  const hepa = byId("hepa");
-  const battery = byId("battery");
-  const brush = byId("brush");
-
-  const cards: FeatureCard[] = [];
-  if (power) cards.push({ id: power.id, headline: power.value, caption: power.label });
-  if (suction) {
-    cards.push({
-      id: suction.id,
-      headline: suction.value,
-      caption: suction.note ? `${suction.label} — ${suction.note}` : suction.label,
-    });
-  }
-  if (modes) cards.push({ id: modes.id, headline: modes.value, caption: modes.label });
-  if (hepa) cards.push({ id: hepa.id, headline: hepa.label, caption: hepa.value });
-  if (battery) cards.push({ id: battery.id, headline: battery.value, caption: battery.label });
-  if (brush) cards.push({ id: brush.id, headline: brush.label, caption: brush.value });
-
-  return cards;
+  return [
+    {
+      id: "power",
+      title: "Мощность без преувеличений",
+      text: `BLDC-мотор мощностью 400 Вт и максимальное всасывание ${suction?.value ?? "до 30 кПа"}${
+        suction?.note ? ` ${suction.note}` : ""
+      }.`,
+    },
+    {
+      id: "runtime",
+      title: "До 60 минут работы",
+      text: "Четыре режима работы позволяют выбирать баланс между мощностью и продолжительностью уборки.",
+    },
+    {
+      id: "dustbin",
+      title: "Контейнер 800 мл",
+      text: "Достаточный объём для повседневной уборки без постоянного опустошения.",
+    },
+    {
+      id: "tube",
+      title: "Складная конструкция",
+      text: "Труба помогает добраться до пространства под низкой мебелью.",
+    },
+  ];
 }
 
 const featureCards = buildFeatureCards();
@@ -67,7 +69,7 @@ export function StickyFeatureSectionClient({ image }: StickyFeatureSectionClient
 
   return (
     <section id="preimushestva" className="scroll-mt-24 bg-black py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8 lg:px-12">
         <h2 className="font-display text-2xl font-semibold text-bone-100 sm:text-3xl">
           Преимущества
         </h2>
@@ -86,7 +88,7 @@ export function StickyFeatureSectionClient({ image }: StickyFeatureSectionClient
             </div>
           </div>
 
-          <div className="flex flex-col gap-14 lg:gap-24 lg:py-6">
+          <div className="flex min-w-0 flex-col gap-14 lg:gap-24 lg:py-6">
             {featureCards.map((card, index) => (
               <div
                 key={card.id}
@@ -101,9 +103,9 @@ export function StickyFeatureSectionClient({ image }: StickyFeatureSectionClient
                   {String(index + 1).padStart(2, "0")}
                 </p>
                 <p className="mt-3 font-display text-2xl font-semibold text-bone-100 sm:text-3xl">
-                  {card.headline}
+                  {card.title}
                 </p>
-                <p className="mt-2 text-bone-400">{card.caption}</p>
+                <p className="mt-2 text-bone-400">{card.text}</p>
               </div>
             ))}
           </div>

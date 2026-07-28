@@ -25,6 +25,14 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Safety net: a long unbreakable word in a heading must wrap rather than
+   force horizontal overflow on narrow screens. */
+h1,
+h2,
+h3 {
+  overflow-wrap: break-word;
+}
+
 body {
   background-color: var(--color-black);
 }

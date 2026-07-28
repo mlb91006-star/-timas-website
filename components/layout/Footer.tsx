@@ -6,7 +6,7 @@ export function Footer() {
 
   return (
     <footer className="border-t border-white/5 bg-graphite-950">
-      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-12 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-5 py-12 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-12">
         <div>
           <span className="font-display text-sm font-semibold tracking-[0.2em] text-bone-100 uppercase">
             {siteConfig.name}
@@ -29,7 +29,7 @@ export function Footer() {
         </nav>
       </div>
 
-      <div className="border-t border-white/5 px-4 py-6 text-center text-xs text-bone-500 sm:px-6 lg:px-8">
+      <div className="border-t border-white/5 px-5 py-6 text-center text-xs text-bone-500 sm:px-8 lg:px-12">
         © {year} {siteConfig.name}. Все права защищены.
       </div>
     </footer>
