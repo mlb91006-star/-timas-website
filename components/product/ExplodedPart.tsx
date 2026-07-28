@@ -12,5 +12,12 @@ interface ExplodedPartProps {
  * never animates itself.
  */
 export function ExplodedPart({ part }: ExplodedPartProps) {
-  return <ProductImageSlot src={part.image} alt={part.alt} className="h-full w-full" />;
+  return (
+    <ProductImageSlot
+      src={part.image}
+      alt={part.alt}
+      className="h-full w-full"
+      variant="silhouette"
+    />
+  );
 }
