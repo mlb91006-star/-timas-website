@@ -5,32 +5,27 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-white/5 bg-graphite-950">
-      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-12 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-        <div>
-          <span className="font-display text-sm font-semibold tracking-[0.2em] text-bone-100 uppercase">
-            {siteConfig.name}
-          </span>
-          <p className="mt-2 max-w-sm text-sm text-bone-500">
-            {siteConfig.description}
-          </p>
+    <footer className="border-t border-line bg-paper-soft">
+      <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-12 sm:px-6 lg:flex-row lg:items-start lg:justify-between lg:px-8">
+        <div className="max-w-sm">
+          <span className="font-display text-lg font-bold text-ink">{siteConfig.name}</span>
+          <p className="mt-2 text-sm text-ink-muted">{siteConfig.description}</p>
         </div>
 
-        <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-bone-500">
-          <Link href="/products/dh20-ultra" className="hover:text-bone-100">
-            {siteConfig.productName}
-          </Link>
-          <Link href="/support" className="hover:text-bone-100">
-            Поддержка
-          </Link>
-          <Link href="/contacts" className="hover:text-bone-100">
+        <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink-muted">
+          {siteConfig.nav.map((link) => (
+            <Link key={link.href} href={link.href} className="hover:text-ink">
+              {link.label}
+            </Link>
+          ))}
+          <Link href="/contacts" className="hover:text-ink">
             Контакты
           </Link>
         </nav>
       </div>
 
-      <div className="border-t border-white/5 px-4 py-6 text-center text-xs text-bone-500 sm:px-6 lg:px-8">
-        © {year} {siteConfig.name}. Все права защищены.
+      <div className="border-t border-line px-4 py-6 text-center text-xs text-ink-muted sm:px-6 lg:px-8">
+        © {year} {siteConfig.name}. Продавец: {siteConfig.legalName}.
       </div>
     </footer>
   );

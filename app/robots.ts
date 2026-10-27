@@ -7,6 +7,8 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: `${siteConfig.url}/sitemap.xml`,
+    // Omitted until a real domain is confirmed (config/site.ts `url`) —
+    // an empty/placeholder sitemap URL would be worse than none at all.
+    ...(siteConfig.url ? { sitemap: `${siteConfig.url}/sitemap.xml` } : {}),
   };
 }

@@ -18,7 +18,7 @@ export function MobileNav({ open, onNavigate }: MobileNavProps) {
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
           transition={{ duration: 0.25, ease: "easeInOut" }}
-          className="overflow-hidden border-b border-graphite-700 bg-graphite-950 md:hidden"
+          className="overflow-hidden border-b border-line bg-paper lg:hidden"
         >
           <nav className="flex flex-col gap-1 px-4 py-4">
             {siteConfig.nav.map((link) => (
@@ -26,17 +26,17 @@ export function MobileNav({ open, onNavigate }: MobileNavProps) {
                 key={link.href}
                 href={link.href}
                 onClick={onNavigate}
-                className="rounded-md px-3 py-3 text-sm text-bone-300 transition-colors hover:bg-graphite-800 hover:text-bone-100"
+                className="rounded-button px-3 py-3 text-sm text-ink-muted transition-colors hover:bg-paper-soft hover:text-ink"
               >
                 {link.label}
               </Link>
             ))}
             <Link
-              href={siteConfig.buyHref}
+              href="#where-to-buy"
               onClick={onNavigate}
-              className="mt-2 rounded-full bg-champagne-500 px-4 py-3 text-center text-sm font-semibold text-black transition-colors hover:bg-champagne-400"
+              className="mt-2 rounded-button bg-accent px-4 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-accent-hover"
             >
-              Купить
+              Где купить
             </Link>
           </nav>
         </motion.div>

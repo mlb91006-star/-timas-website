@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope, Unbounded } from "next/font/google";
+import { Manrope, Onest } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
 import { Header } from "@/components/layout/Header";
@@ -9,24 +9,28 @@ const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin", "cyrillic"],
   display: "swap",
+  weight: ["400", "500", "600"],
 });
 
-const unbounded = Unbounded({
-  variable: "--font-unbounded",
+const onest = Onest({
+  variable: "--font-onest",
   subsets: ["latin", "cyrillic"],
   display: "swap",
-  weight: ["500", "600", "700", "800"],
+  weight: ["600", "700"],
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
+  // metadataBase is left unset until a real domain is confirmed — Next.js
+  // falls back to relative URLs, which is honest and doesn't crash the
+  // build. Set siteConfig.url once the domain is known.
+  ...(siteConfig.url ? { metadataBase: new URL(siteConfig.url) } : {}),
   title: {
-    default: siteConfig.fullProductName,
+    default: `${siteConfig.name} — ${siteConfig.tagline}`,
     template: `%s — ${siteConfig.name}`,
   },
   description: siteConfig.description,
   openGraph: {
-    title: siteConfig.fullProductName,
+    title: siteConfig.name,
     description: siteConfig.description,
     locale: siteConfig.locale,
     type: "website",
@@ -39,11 +43,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="ru"
-      className={`${manrope.variable} ${unbounded.variable} h-full antialiased`}
-    >
-      <body className="flex min-h-full flex-col overflow-x-hidden bg-black text-neutral-100">
+    <html lang="ru" className={`${manrope.variable} ${onest.variable} h-full antialiased`}>
+      <body className="flex min-h-full flex-col overflow-x-hidden bg-paper text-ink">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

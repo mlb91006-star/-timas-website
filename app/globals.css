@@ -1,24 +1,41 @@
 @import "tailwindcss";
 
+/*
+ * Design tokens map 1:1 to BRAND_KIT.md section 6 ("Визуальный стиль"):
+ *   paper        ↔ --bg        #FFFFFF
+ *   paper-soft   ↔ --bg-soft   #F6F8FA
+ *   ink          ↔ --ink       #14181F
+ *   ink-muted    ↔ --ink-muted #5C6675
+ *   accent       ↔ --accent    #3E8FD6
+ *   accent-hover ↔ --accent-hover #2F74B0
+ *   accent-soft  ↔ --accent-soft  #E6F1FA
+ *   warm         ↔ --warm      #F3B9A3 (used sparingly — single accent, not a background)
+ *   line         ↔ --line      #E4E8ED
+ * Renamed bg→paper only to avoid the awkward `bg-bg` Tailwind class; the
+ * hex values are unchanged. If Mylamby's own approved brand colors ever
+ * replace these, update only the values here.
+ */
 @theme inline {
   --font-sans: var(--font-manrope);
-  --font-display: var(--font-unbounded);
+  --font-display: var(--font-onest);
 
-  --color-black: #050505;
-  --color-graphite-950: #0d0d0f;
-  --color-graphite-900: #17181b;
-  --color-graphite-800: #212226;
-  --color-graphite-700: #2d2e33;
-  --color-graphite-600: #3c3d44;
+  --color-paper: #ffffff;
+  --color-paper-soft: #f6f8fa;
+  --color-ink: #14181f;
+  --color-ink-muted: #5c6675;
+  --color-accent: #3e8fd6;
+  --color-accent-hover: #2f74b0;
+  --color-accent-soft: #e6f1fa;
+  --color-warm: #f3b9a3;
+  --color-line: #e4e8ed;
 
-  --color-champagne-300: #ead9b8;
-  --color-champagne-400: #d8bf8f;
-  --color-champagne-500: #c6a874;
-  --color-champagne-600: #a98c58;
+  --radius-card: 14px;
+  --radius-button: 10px;
+  --radius-pill: 999px;
 
-  --color-bone-100: #f6f4f0;
-  --color-bone-300: #d9d6cf;
-  --color-bone-500: #9c9a94;
+  --shadow-soft:
+    0 1px 2px rgba(20, 24, 31, 0.06),
+    0 8px 24px rgba(20, 24, 31, 0.05);
 }
 
 html {
@@ -26,25 +43,20 @@ html {
 }
 
 body {
-  background-color: var(--color-black);
+  background-color: var(--color-paper);
 }
 
 ::selection {
-  background-color: var(--color-champagne-500);
-  color: var(--color-black);
+  background-color: var(--color-accent-soft);
+  color: var(--color-ink);
 }
 
-.text-gradient-champagne {
-  background: linear-gradient(
-    100deg,
-    var(--color-champagne-600) 0%,
-    var(--color-champagne-300) 35%,
-    var(--color-champagne-500) 60%,
-    var(--color-champagne-600) 100%
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
+/* Safety net: a long unbreakable word in a heading must wrap rather than
+   force horizontal overflow on narrow screens. */
+h1,
+h2,
+h3 {
+  overflow-wrap: break-word;
 }
 
 @media (prefers-reduced-motion: reduce) {

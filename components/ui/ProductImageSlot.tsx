@@ -1,48 +1,72 @@
-import fs from "node:fs";
-import path from "node:path";
 import Image from "next/image";
+import { isImageSafeToShow } from "@/lib/image-utils";
 
 interface ProductImageSlotProps {
   src: string;
   alt: string;
   priority?: boolean;
   className?: string;
+  /**
+   * "card" (default): bordered panel with a "photo coming soon" message —
+   * for a single standalone slot (hero, catalog cards, story sections).
+   * "silhouette": just a soft neutral shape, no border / background /
+   * text — for contexts where several slots can be visible at once,
+   * where stacking multiple "card" fallbacks would read as broken,
+   * overlapping duplicate UI instead of a clean diagram.
+   */
+  variant?: "card" | "silhouette";
 }
 
 /**
- * Renders the real product photo when it exists in /public, otherwise a
- * neutral placeholder — no invented product imagery. Existence is checked
- * on the server so a missing asset never breaks the build or the page.
+ * Renders the real product photo when it exists in /public and doesn't
+ * have a checkerboard "transparency indicator" baked into its pixels
+ * (see lib/image-utils.ts) — otherwise a neutral, honest placeholder.
+ * Existence/quality checks run on the server, so a missing or broken
+ * export never breaks the build or reaches the user. BRAND_KIT: "фото
+ * продукта — на белом или светло-сером, без тяжёлых теней."
  */
-export function ProductImageSlot({
+export async function ProductImageSlot({
   src,
   alt,
   priority,
   className,
+  variant = "card",
 }: ProductImageSlotProps) {
-  const exists = fs.existsSync(path.join(process.cwd(), "public", src));
+  const safe = await isImageSafeToShow(src);
 
-  return (
-    <div
-      className={`relative overflow-hidden rounded-[2rem] border border-white/5 bg-graphite-900 ${className ?? ""}`}
-    >
-      {exists ? (
+  if (safe) {
+    return (
+      <div
+        className={`relative overflow-hidden rounded-card border border-line bg-paper-soft ${className ?? ""}`}
+      >
         <Image
           src={src}
           alt={alt}
           fill
           priority={priority}
-          className="object-contain p-8"
+          className="object-contain p-6"
           sizes="(min-width: 1024px) 560px, 90vw"
         />
-      ) : (
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 p-8 text-center">
-          <div className="h-14 w-14 rounded-full border border-champagne-500/50" />
-          <p className="max-w-[240px] text-sm text-bone-500">
-            Фотография товара появится здесь
-          </p>
-        </div>
-      )}
+      </div>
+    );
+  }
+
+  if (variant === "silhouette") {
+    return (
+      <div className={`relative ${className ?? ""}`}>
+        <div className="absolute inset-[18%] rounded-full bg-accent-soft blur-[1px]" />
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className={`relative overflow-hidden rounded-card border border-line bg-paper-soft ${className ?? ""}`}
+    >
+      <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 p-8 text-center">
+        <div className="h-12 w-12 rounded-full border border-accent/40 bg-paper" />
+        <p className="max-w-[240px] text-sm text-ink-muted">Фотография появится здесь</p>
+      </div>
     </div>
   );
 }

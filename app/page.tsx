@@ -1,20 +1,25 @@
 import { Hero } from "@/components/sections/Hero";
-import { SpecsHighlight } from "@/components/sections/SpecsHighlight";
-import { ExplodedVacuumSection } from "@/components/sections/ExplodedVacuumSection";
-import { ProductImageSlot } from "@/components/ui/ProductImageSlot";
+import { Catalog } from "@/components/sections/Catalog";
+import { SizeGuide } from "@/components/sections/SizeGuide";
+import { AboutBrand } from "@/components/sections/AboutBrand";
+import { QualityCare } from "@/components/sections/QualityCare";
+import { WhereToBuy } from "@/components/sections/WhereToBuy";
+import { Wholesale } from "@/components/sections/Wholesale";
+import { FAQ } from "@/components/sections/FAQ";
+import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <SpecsHighlight />
-      <ExplodedVacuumSection>
-        <ProductImageSlot
-          src="/images/dh20/exploded/vacuum-complete.png"
-          alt="TIMAS DH20 Ultra в разборе"
-          className="aspect-square w-full max-w-md"
-        />
-      </ExplodedVacuumSection>
+      <Catalog />
+      <SizeGuide />
+      <AboutBrand />
+      <QualityCare />
+      <WhereToBuy />
+      <Wholesale />
+      <FAQ />
+      <FinalCTA />
     </>
   );
 }
